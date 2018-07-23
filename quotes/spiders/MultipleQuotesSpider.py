@@ -2,13 +2,12 @@
 import scrapy
 
 
-class SinglequotespiderSpider(scrapy.Spider):
-    name = 'single-quote'
+class MultiplequotesspiderSpider(scrapy.Spider):
+    name = 'multiple-quotes'
     allowed_domains = ['toscrape.com']
-    start_urls = ['http://quotes.toscrape.com/random']
+    start_urls = ['http://quotes.toscrape.com']
 
     def parse(self, response):
-        self.log('I just visited: ' + response.url)
         for quote in response.css('div.quote'):
             item = {
                 'author_name': quote.css('small.author::text').extract_first(),
